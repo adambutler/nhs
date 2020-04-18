@@ -1,3 +1,11 @@
+<% if params[:submitted] %>
+  <div class="p-10 border-blue-500 border-4 rounded-lg mb-20">
+    <h2 class="text-white text-2xl text-center mb-5 text-bold">Thank you</h2>
+    <p class="text-white text-center mb-5">I'll review your design and add it to the display and site within 24 hours</p>
+    <p class="text-white text-center">Feel free to submit another design below</p>
+  </div>
+<% end %>
+
 <%= form_for(Frame.new) do |f| %>
   <%= react_component('Editor') %>
 <% end %>
@@ -23,7 +31,7 @@
 
 <h2 class="text-white text-xl text-center mb-5">Live frames</h2>
 
-<% Frame.where(approved: nil).each do |frame| %>
+<% @frames.each do |frame| %>
   <div class="mb-10">
     <%= react_component('Editor', data: frame.data, readonly: true) %>
 
