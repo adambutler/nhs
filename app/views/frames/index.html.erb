@@ -1,0 +1,32 @@
+<%= form_for(Frame.new) do |f| %>
+  <%= react_component('Editor') %>
+<% end %>
+
+<hr class="border-t-2	border-gray-700 border-dotted my-20">
+
+<h2 class="text-white text-xl text-center mb-5">About</h2>
+
+<div class="text-center text-white">
+  <%= image_tag 'video.gif', class: "rounded-lg my-5 inline-block" %>
+  <p class="mb-5 text-xl text-bold">
+    👋 Hi I'm
+    <a href="https://twitter.com/labfoo" class="text-blue-200 underline">Adam</a>.<br>
+    I 💙 hardware hacking.
+  </p>
+  <p class="mb-5">I've built a display in my window to show my support for the amazing heros in our NHS and now I'm inviting others to contribute their own message of support.</p>
+  <p>Add your design above, I'll review it within 24 hours and add it to the display.<br>
+  I'll also post videos of new designs on my <a href="https://twitter.com/labfoo" class="text-blue-200 underline">Twitter</a>.<br></p>
+</div>
+
+
+<hr class="border-t-2	border-gray-700 border-dotted my-20">
+
+<h2 class="text-white text-xl text-center mb-5">Live frames</h2>
+
+<% Frame.where(approved: nil).each do |frame| %>
+  <div class="mb-10">
+    <%= react_component('Editor', data: frame.data, readonly: true) %>
+
+    <p class="font-sm text-blue-200">by <%= frame.credit.present? ? frame.credit : 'anonymous' %></p>
+  </div>
+<% end %>
