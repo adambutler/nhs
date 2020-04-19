@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { times, flatten } from "ramda";
+import { times } from "ramda";
 import { CirclePicker } from "react-color";
 import defaultFrame from "./defaultFrame";
 import blankFrame from "./blankFrame";
 
 const width = 48;
 const height = 6;
-const pixelSize = 15;
 
 const colors = [
   "#ff4336",
@@ -44,8 +43,12 @@ export default ({ data, readonly }) => {
   const renderPixel = (column, row) => {
     return (
       <div
+        className="cursor-pointer"
         style={{ flex: 1, padding: 2, paddingTop: "1%", paddingBottom: "1%" }}
         onClick={() => paint(column, row)}
+        onMouseEnter={(event) => {
+          if (event.buttons) paint(column, row);
+        }}
       >
         <div
           className="rounded-sm"
@@ -82,7 +85,7 @@ export default ({ data, readonly }) => {
           <div className="flex justify-center">
             <div className="text-center">
               <button
-                className="text-white m-5"
+                className="text-white m-5 cursor-pointer"
                 onClick={() => {
                   if (readonly) return;
                   const result = confirm("Are you sure you want to reset?");
