@@ -86,7 +86,8 @@ export default ({ data, readonly }) => {
             <div className="text-center">
               <button
                 className="text-white m-5 cursor-pointer"
-                onClick={() => {
+                onClick={(event) => {
+                  event.preventDefault();
                   if (readonly) return;
                   const result = confirm("Are you sure you want to reset?");
                   if (result) setFrame(blankFrame);
