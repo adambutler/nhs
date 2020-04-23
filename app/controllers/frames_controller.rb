@@ -39,6 +39,9 @@ class FramesController < ApplicationController
     when '#4cf137' then 'G'
     when '#ffeb3b' then 'Y'
     when '#000000' then ' '
+    when 'rgb(0,0,0)' then ' '
+    when '#34e7e4' then 'C'
+    when '#fc429b' then 'H'
     when '#a55eea' then 'P'
     else hex
     end
