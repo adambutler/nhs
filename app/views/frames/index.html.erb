@@ -32,9 +32,11 @@
 <h2 class="text-white text-xl text-center mb-5">Live frames</h2>
 
 <% @frames.each do |frame| %>
-  <div class="mb-10">
+  <div class="m-auto mb-10 lg:w-1/2">
     <%= react_component('Editor', data: frame.data, readonly: true) %>
 
     <p class="font-sm text-blue-200">by <%= frame.credit.present? ? frame.credit : 'anonymous' %></p>
+    <p class="text-gray-900" style="font-size: 0.5em;"><%= frame.id %></p>
+
   </div>
 <% end %>
